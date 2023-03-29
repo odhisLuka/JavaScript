@@ -231,7 +231,20 @@ function healPlayer() {
 }
 
 function printLogHandler() {
-  console.log(battleLog);
+  // for (let i = 0; i<battleLog.length; i++) {
+  //   console.log(battleLog[i]);
+  // }
+  
+  // the "for-of" loop
+  for (const logEntry of battleLog) {
+    console.log(`#${i}`);
+    for (const key in logEntry) {
+      console.log(`${key}` - `${logEntry[key]}`); // the first logs, the key, and the second the value
+    }
+  }
+  i++;  
+
+
 }
 
 attackBtn.addEventListener('click', onAttack);
