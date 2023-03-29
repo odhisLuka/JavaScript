@@ -11,12 +11,22 @@ const LOG_EVENT_MONSTER_ATTACK = 'MONSTER_ATTACK';
 const LOG_EVENT_PLAYER_HEAL = 'PLAYER_HEAL';
 const LOG_EVENT_GAME_OVER = 'GAME_OVER';
 
-const enteredValue = prompt('Please, enter Player and Monster health of your choice', '100');
+function getMaxLifeValue () {
+  const enteredValue = prompt('Please, enter Player and Monster health of your choice', '100');
+  let parseValue = parseInt(enteredValue);
+  if (isNaN(parseValue) || parsedValue <= 0) {
+    throw {message: 'Not a valid user input. Try a number' }        
+  }
+  return parsedValue;
+}
 
-let chosenMaxLife = parseInt(enteredValue);
-
-if (isNaN(chosenMaxLife) || chosenMaxLife <= 0) {
+let chosenMaxLife;
+try {
+  chosenMaxLife = getMaxLifeValue();
+} catch (error) {
+  console.log(error);
   chosenMaxLife = 100;
+  alert('You entered something wrong, so the default value of 100 was used!');
 }
 
 let battleLog = [];
@@ -241,6 +251,7 @@ function printLogHandler() {
     for (const key in logEntry) {
       console.log(`${key}` - `${logEntry[key]}`); // the first logs, the key, and the second the value
     }
+    break;
   }
   i++;  
 
