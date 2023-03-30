@@ -19,9 +19,11 @@
 
 
 console.log(userName);
-var userName = 'Luke'; // this logs 'unefined' in Chrome console. 
+var userName = 'Luke'; // this logs 'undefined' in Chrome console. 
 
 // Let & const will log an error. So, why is that?
+// const and let don't work like var when it comes to hoisting (this example would've worked with var).
+
 
 // Hoisiting; JS behavior of moving declarations to the top
 // a variable can be declared after it has been used.
