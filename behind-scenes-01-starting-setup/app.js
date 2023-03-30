@@ -30,6 +30,8 @@ var userName = 'Luke'; // this logs 'unefined' in Chrome console.
 // what JS does, is it initially pulls the var variable 
 // to the top/beginning of your file as follows:
 
+'use strict'; // JavaScript will activate the strict mode for the script when you add this at the top
+
 var userName;
 
 console.log(userName);
