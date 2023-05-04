@@ -16,7 +16,21 @@ const updateUI = () => {
   }
 };
 
-const rendorNewMovieList = (title, image, rating) => {
+const deleteMovieHandler = (movieId) => {
+  let movieIndex = 0;
+  for (movie of movies) {
+    if (movie.id === movieId) {
+      break;
+    }
+    movieIndex++;
+  }
+  movies.splice(movieIndex, 1);
+  const listRoot = document.getElementById('movie-list');
+  listRoot.children[movieIndex].remove();
+  // listRoot.removeChild(children[movieIndex]);
+};
+
+const rendorNewMovieList = (id, title, image, rating) => {
   const newMovieElement = document.createElement('li');
   newMovieElement.className = 'movie-element';
   newMovieElement.innerHTML = `
@@ -29,6 +43,7 @@ const rendorNewMovieList = (title, image, rating) => {
     <p>${rating}/5 stars</p>
   </div>
   `;
+  newMovieElement.addEventListener('click', deleteMovieHandler.bind(null, id))
   const listRoot = document.getElementById('movie-list');
   listRoot.append(newMovieElement);
 };
@@ -70,6 +85,7 @@ const addMovieHandler = () => {
   }
 
   const newMovie = {
+    id: Math.random().toString(),
     title: titleValue,
     image: imageUrlValue,
     rating: ratingValue
@@ -78,7 +94,12 @@ movies.push(newMovie);
 console.log(movies);
 toggleMovieModal();
 clearUserInput();
-rendorNewMovieList(newMovie.title, newMovie.image, newMovie.rating);
+rendorNewMovieList(
+  newMovie.id,
+  newMovie.title,
+  newMovie.image,
+  newMovie.rating
+);
 updateUI();
 };
 
