@@ -6,7 +6,7 @@ const searchBtn = document.getElementById("search-btn");
 const movies = [];
 
 // function to display movie list on viewport
-const renderMovies = () => {
+const renderMovies = (filter = "") => {
   const movieList = document.getElementById("movie-list");
 
   if (movies.length === 0) {
@@ -16,7 +16,11 @@ const renderMovies = () => {
   }
   movieList.innerHTML = "";
 
-  movies.forEach((movie) => {
+  const filteredMovies = !filter
+    ? movies
+    : movies.filter((movie) => movie.info.title.includes(filter));
+
+  filteredMovies.forEach((movie) => {
     const movieElement = document.createElement("li");
     let text = movie.info.title + " - ";
     for (const key in movie.info) {
@@ -55,5 +59,13 @@ const addMovies = () => {
   renderMovies();
 };
 
+// funtion to search for movies
+
+const searchMovie = () => {
+  const filterTerm = document.getElementById("filter-title").value;
+  renderMovies(filterTerm);
+};
+
 // add event listeners
 addMovieBtn.addEventListener("click", addMovies);
+searchBtn.addEventListener("click", searchMovie);
