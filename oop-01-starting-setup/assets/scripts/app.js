@@ -1,22 +1,29 @@
-const myProductList = {
-  products: [
-    {
-      title: "Fashion Men's Suits Official, Wedding And Executive",
-      imageUrl:
-        "https://ke.jumia.is/unsafe/fit-in/500x500/filters:fill(white)/product/05/562074/1.jpg?6976",
-      price: 46.99,
-      description:
-        "Perfect for groom suit, bridegroom suit, groomsman suit, business suit and men leisure wear.",
-    },
-    {
-      title:
-        "Fashion Mens Two Piece Set ( Jacket + Pant ) Fashion Blazers And Trousers XF03 Red",
-      imageUrl:
-        "https://ke.jumia.is/unsafe/fit-in/500x500/filters:fill(white)/product/27/171336/1.jpg?6312",
-      price: 99.99,
-      description: "Shipped from abroad",
-    },
-  ],
+class Product {
+  constructor(title, image, price, desc) {
+    this.title = title;
+    this.imageUrl = image;
+    this.price = price;
+    this.description = desc;
+  }
+}
+class ProductList {
+  products = [
+    new Product(
+      "Fashion Men's Suits Official, Wedding And Executive",
+      "https://ke.jumia.is/unsafe/fit-in/500x500/filters:fill(white)/product/05/562074/1.jpg?6976",
+      46.99,
+      "Perfect for groom suit, bridegroom suit, groomsman suit, business suit and men leisure wear."
+    ),
+    new Product(
+      "Fashion Mens Two Piece Set ( Jacket + Pant ) Fashion Blazers And Trousers XF03 Red",
+      "https://ke.jumia.is/unsafe/fit-in/500x500/filters:fill(white)/product/27/171336/1.jpg?6312",
+      99.99,
+      "Shipped from abroad"
+    ),
+  ];
+
+  constructor() {}
+
   renderHTML() {
     const productContainer = document.getElementById("app");
     const productList = document.createElement("ul");
@@ -39,6 +46,7 @@ const myProductList = {
       productList.append(productItem);
     }
     productContainer.append(productList);
-  },
-};
+  }
+}
+const myProductList = new ProductList();
 myProductList.renderHTML();
